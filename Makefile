@@ -14,5 +14,8 @@ proto:
 agg:
 	@go build -o bin/agg ./aggregator
 	@./bin/agg
+gate:
+	@go build -o bin/gate gateway/main.go
+	@./bin/gate
 .PHONY: obu
 

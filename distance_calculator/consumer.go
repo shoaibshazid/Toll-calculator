@@ -1,8 +1,10 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"github.com/confluentinc/confluent-kafka-go/v2/kafka"
+	"github.com/shoaib/toll-calculator/aggregator/client"
 	"github.com/shoaib/toll-calculator/types"
 	"github.com/sirupsen/logrus"
 	"time"
@@ -69,7 +71,7 @@ func (c *KafkaConsumer) readMessageLoop() {
 			ObuID: int32(data.OBUID),
 		}
 		if err := c.aggClient.Aggregate(context.Background(), req); err != nil {
-			logrus.Errorf("aggregate error:", err)
+			logrus.Errorf("aggregate error: +%v", err)
 			continue
 		}
 	}
